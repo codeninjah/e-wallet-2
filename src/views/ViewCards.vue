@@ -40,15 +40,21 @@ import Card from '../components/Card.vue'
                 let lsData = JSON.parse(localStorage.getItem('stored'))
                 this.cards.splice(index)
                 console.log("This is in localStorage before splice: " + lsData)
-                lsData.splice(index)
-                localStorage.setItem('stored', JSON.stringify(lsData))
-                console.log("Remove at: " + index)
-                //lsData.splice(index)
-                console.log("This is in localStorage after splice: " + lsData)
 
-                if(lsData.length == 0){
-                    localStorage.removeItem('stored')
-                }
+                let confirmDelete = confirm("Are you sure you want to delete this?")
+
+                if(confirmDelete){
+                    lsData.splice(index)
+                    localStorage.setItem('stored', JSON.stringify(lsData))
+                    console.log("Remove at: " + index)
+                    //lsData.splice(index)
+                    console.log("This is in localStorage after splice: " + lsData)
+
+                    if(lsData.length == 0){
+                        localStorage.removeItem('stored')
+                    }
+                }       
+                
 
             }
         },
