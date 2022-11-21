@@ -33,10 +33,37 @@ export default {
 
   methods: {
     addToCardArray(getItem){
-      this.cardArray.push(getItem)
-      //this.localStorage.storedData.push(getItem)
-      this.storedData.push(getItem)
+
+      //compare if the cards number already exists in the array
+      /*
+      for(var i = 0; i < this.cardArray.length; i++){
+        if(getItem.cardNumber == this.cardArray[i].cardNumber){
+          alert("Number already exists")
+        } 
+      }
+      */
+
+      //Following wont work
+      /*
+      for(let card of this.cardArray){
+        if(getItem.cardNumber !== card.cardNumber){
+          alert("Works!")
+          this.cardArray.push(getItem)
+          this.storedData.push(getItem)
+          console.log("Does this show up?")
+        }
+        
+        if(getItem.cardNumber === card.cardNumber){
+          alert("Card number already exists")
+        }
+      }
+      */
+
+        this.cardArray.push(getItem) 
+        this.storedData.push(getItem) 
+
       localStorage.setItem("stored", JSON.stringify(this.storedData))
+
       if(localStorage){
         this.stored = JSON.parse(localStorage.getItem('stored'))
         console.log("Hej!")
@@ -48,7 +75,7 @@ export default {
         console.log("This.stored is: " + this.stored)
         
       }
-      console.log("Local storage" + localStorage)
+      
     }
   }
 }
